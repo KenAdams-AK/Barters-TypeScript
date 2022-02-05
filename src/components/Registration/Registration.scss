@@ -1,0 +1,43 @@
+@import "../../scss/commonPatterns.scss";
+
+.Registration {
+	&__container {
+		max-width: 400px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin: 0 auto;
+	}
+
+	&__title {
+		margin-top: 10px;
+	}
+
+	&__form-container {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		input {
+			outline: none;
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+		}
+
+		button {
+			@include button;
+		}
+	}
+
+	&__error {
+		font-size: 0.75rem;
+		font-style: italic;
+		color: red;
+	}
+
+	&__success {
+		text-align: center;
+		color: #0dba52;
+	}
+}

@@ -1,0 +1,15 @@
+@mixin button {
+	padding: 10px;
+	color: #fff;
+	background: #2f80ed;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+
+	&:active {
+		transform: scale(0.97);
+	}
+	&:disabled {
+		background: #666;
+	}
+}

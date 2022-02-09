@@ -1,13 +1,14 @@
-import { RegistrationActionTypes } from './registrationTypes';
-import { RegistrationAction } from './registrationActions';
+import { RegistrationActionTypes } from '../redux.data.type';
+import { registrationFailureAction, registrationRequestAction, registrationSuccessAction } from './registrationActions';
 import { Dispatch } from "redux"
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { UserType } from '../../components/components.data.type';
 
-export const registrationAsyncAction = (newUser: {}) => {
+export const registrationAsyncAction = (newUser: UserType) => {
 
-	return (dispatch: Dispatch<RegistrationAction>) => {
+	return (dispatch: Dispatch<RegistrationActionTypes>) => {
 
-		dispatch({ type: RegistrationActionTypes.REGISTRATION_REQUEST })
+		dispatch(registrationRequestAction())
 
 		const options: AxiosRequestConfig = {
 			method: "post",
@@ -18,11 +19,11 @@ export const registrationAsyncAction = (newUser: {}) => {
 		axios(options)
 			.then((response: AxiosResponse) => {
 				const userData = response.data
-				dispatch({type: RegistrationActionTypes.REGISTRATION_SUCCESS, payload: userData})
+				dispatch(registrationSuccessAction(userData))
 			})
 			.catch((error: AxiosError) => {
 				const errorMessage = error?.response?.data?.message
-				dispatch({type: RegistrationActionTypes.REGISTRATION_FAILURE, payload: errorMessage})
+				dispatch(registrationFailureAction(errorMessage))
 			})
 	}
 }

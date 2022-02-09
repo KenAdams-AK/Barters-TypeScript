@@ -1,11 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as ROUTS from "../../constants/routs";
+import { useActions, useAppSelector } from "../../redux/hooks";
 import "./Header.scss";
 
 export const Header: React.FC = () => {
+	const { logoutAction } = useActions();
+
+	const username = useAppSelector((state) => state.login.userData.username);
+	const isLogged = useAppSelector((state) => state.login.isSuccess);
+
+	console.log("HeaderComponent>>>>>>");
+
 	const handleLogout = () => {
-		window.confirm("Are you sure, you wanna logout?");
+		isLogged &&
+			window.confirm("Are you sure, you wanna logout?") &&
+			logoutAction();
 	};
 
 	return (
@@ -15,7 +25,7 @@ export const Header: React.FC = () => {
 					<Link to={ROUTS.HOME}>Barter</Link>
 				</h1>
 				<div className="Header__greeting">
-					<h2>Hello, User!</h2>
+					<h2>Hello, {username || "Guest"}!</h2>
 				</div>
 				<div className="Header__nav">
 					<nav>

@@ -1,21 +1,26 @@
-import { RegistrationActionTypes } from './registrationTypes';
+import { RegistrationTypes } from './registrationTypes';
+import { RegistrationActionTypes, UserDataType } from '../redux.data.type';
 
 
 
-interface registrationRequestAction {
-		type: RegistrationActionTypes.REGISTRATION_REQUEST
+export function registrationRequestAction(): RegistrationActionTypes {
+	return {
+		type: RegistrationTypes.REGISTRATION_REQUEST
+	}
 	
 }
 
-interface registrationSuccessAction {
-		type: RegistrationActionTypes.REGISTRATION_SUCCESS,
-		payload: {}
+export function registrationSuccessAction(userData: UserDataType): RegistrationActionTypes  {
+	return {
+		type: RegistrationTypes.REGISTRATION_SUCCESS,
+		payload: userData
+	}
 	
 }
 
-interface registrationFailureAction {
-		type: RegistrationActionTypes.REGISTRATION_FAILURE,
-		payload: string
+export function registrationFailureAction(errorMessage: string): RegistrationActionTypes {
+	return {
+		type: RegistrationTypes.REGISTRATION_FAILURE,
+		payload: errorMessage
+	}
 }
-
-export type RegistrationAction = registrationRequestAction | registrationSuccessAction | registrationFailureAction;

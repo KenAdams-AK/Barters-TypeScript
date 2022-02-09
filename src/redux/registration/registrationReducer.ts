@@ -1,31 +1,24 @@
-import { RegistrationAction } from './registrationActions';
-import { RegistrationActionTypes } from './registrationTypes';
+import { RegistrationTypes } from './registrationTypes';
+import { RegistrationStateType, UserDataType, RegistrationActionTypes } from '../redux.data.type';
 
-interface RegistrationState {
-	isLoading: boolean;
-	userData: {};
-	isSuccess: boolean;
-	errorMessage: string | null
-}
-
-const initialState: RegistrationState = {
+const initialState: RegistrationStateType = {
 	isLoading: false,
-	userData: {},
+	userData: {} as UserDataType,
 	isSuccess: false,
 	errorMessage: null
 }
 
-export const registrationReducer = (state = initialState, action: RegistrationAction ) : RegistrationState => {
+export const registrationReducer = (state = initialState, action: RegistrationActionTypes ) : RegistrationStateType => {
 	switch (action.type) {
-		case RegistrationActionTypes.REGISTRATION_REQUEST:
+		case RegistrationTypes.REGISTRATION_REQUEST:
 			return {
 				isLoading: true,
-				userData: {},
+				userData: {} as UserDataType,
 				isSuccess: false,
 				errorMessage: null
 			}
 		
-		case RegistrationActionTypes.REGISTRATION_SUCCESS:
+		case RegistrationTypes.REGISTRATION_SUCCESS:
 			return {
 				isLoading: false,
 				userData: action.payload,
@@ -33,10 +26,10 @@ export const registrationReducer = (state = initialState, action: RegistrationAc
 				errorMessage: null
 			}
 		
-		case RegistrationActionTypes.REGISTRATION_FAILURE:
+		case RegistrationTypes.REGISTRATION_FAILURE:
 			return {
 				isLoading: false,
-				userData: {},
+				userData: {} as UserDataType,
 				isSuccess: false,
 				errorMessage: action.payload
 			}

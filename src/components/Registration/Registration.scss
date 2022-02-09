@@ -31,13 +31,14 @@
 	}
 
 	&__error {
-		font-size: 0.75rem;
-		font-style: italic;
-		color: red;
+		@include error;
 	}
 
 	&__success {
-		text-align: center;
-		color: #0dba52;
+		@include success;
+	}
+
+	&__link {
+		@include link;
 	}
 }

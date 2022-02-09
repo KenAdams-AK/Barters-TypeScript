@@ -1,7 +1,9 @@
+$color-blue-primary: #2f80ed;
+
 @mixin button {
 	padding: 10px;
 	color: #fff;
-	background: #2f80ed;
+	background: $color-blue-primary;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
@@ -12,4 +14,22 @@
 	&:disabled {
 		background: #666;
 	}
+}
+
+@mixin link {
+	margin-top: 10px;
+	text-align: center;
+	color: $color-blue-primary;
+	text-decoration: underline;
+}
+
+@mixin error {
+	font-size: 0.75rem;
+	font-style: italic;
+	color: red;
+}
+
+@mixin success {
+	text-align: center;
+	color: #0dba52;
 }

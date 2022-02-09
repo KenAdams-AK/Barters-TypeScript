@@ -1,42 +1,37 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useActions, useAppSelector } from "../../redux/hooks";
 import { passwordValidRegex, usernameValidRegex } from "../../constants/regExp";
-import { registrationAsyncAction } from "../../redux/registration/registrationAsyncActions";
 import "./Registration.scss";
-
-type Input = null | string;
-type Error = null | string;
-
-type User = {
-	username: Input;
-	password: Input;
-};
+import { Link } from "react-router-dom";
+import { LOGIN } from "../../constants/routs";
+import { ErrorType, InputType, UserType } from "../components.data.type";
 
 export const Registration: React.FC = () => {
-	const dispatch = useAppDispatch();
+	const { registrationAsyncAction } = useActions();
 	const { isLoading, isSuccess, errorMessage, userData } = useAppSelector(
 		(state) => state.registration
 	);
 
-	const [newUser, setNewUser] = useState<User | null>(null);
+	const [newUser, setNewUser] = useState<UserType | null>(null);
 
-	const [username, setUsername] = useState<Input>(null);
-	const [password, setPassword] = useState<Input>(null);
-	const [confirmPassword, setConfirmPassword] = useState<Error>(null);
+	const [username, setUsername] = useState<string>(null!);
+	const [password, setPassword] = useState<string>(null!);
+	const [confirmPassword, setConfirmPassword] = useState<InputType>(null);
 
-	const [usernameError, setUsernameError] = useState<Error>(null);
-	const [passwordError, setPasswordError] = useState<Error>(null);
-	const [passwordConfirmError, setPasswordConfirmError] = useState<Error>(null);
-	const [invalidForm, setInvalidForm] = useState<Error>(null);
+	const [usernameError, setUsernameError] = useState<ErrorType>(null);
+	const [passwordError, setPasswordError] = useState<ErrorType>(null);
+	const [passwordConfirmError, setPasswordConfirmError] =
+		useState<ErrorType>(null);
+	const [invalidForm, setInvalidForm] = useState<ErrorType>(null);
 
 	const usernameInputRef = useRef<HTMLInputElement>(null);
 
-	const user = {
+	const user: UserType = {
 		username,
 		password,
 	};
 
-	console.log(userData);
+	console.log("RegistrationComponent>>>>>>");
 
 	useEffect(() => {
 		usernameInputRef.current?.focus();
@@ -93,7 +88,7 @@ export const Registration: React.FC = () => {
 	};
 
 	useEffect(() => {
-		newUser && dispatch(registrationAsyncAction(newUser));
+		newUser && registrationAsyncAction(newUser);
 	}, [newUser]);
 
 	return (
@@ -151,6 +146,9 @@ export const Registration: React.FC = () => {
 						</div>
 					</form>
 				)}
+				<Link to={LOGIN} className="Registration__link">
+					Login here...
+				</Link>
 			</div>
 		</section>
 	);

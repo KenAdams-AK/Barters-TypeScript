@@ -1,0 +1,19 @@
+@import "../../scss/commonPatterns.scss";
+
+.NewComment {
+	margin-bottom: 15px;
+	&__form {
+		display: flex;
+		flex-direction: column;
+
+		&-textarea {
+			border-radius: 10px;
+			margin-bottom: 7px;
+			padding: 5px;
+		}
+
+		&-button {
+			@include button-submit;
+		}
+	}
+}

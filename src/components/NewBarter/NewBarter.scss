@@ -1,0 +1,40 @@
+@import "../../scss/commonPatterns.scss";
+
+.NewBarter {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px 2px #333;
+	padding: 15px;
+	margin-bottom: 20px;
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+
+		&-textarea {
+			@include barter-body;
+			border: none;
+		}
+
+		&-inputs {
+			margin-bottom: 10px;
+
+			label {
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 5px;
+			}
+
+			input {
+				font-weight: bold;
+				padding: 3px;
+				border: none;
+				border-bottom: 1px solid #333;
+			}
+		}
+
+		&-button {
+			@include button-submit;
+		}
+	}
+}

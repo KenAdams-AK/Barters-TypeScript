@@ -1,13 +1,21 @@
 import React from "react";
 import { userData } from "../../App";
+import { useAppSelector } from "../../redux/hooks";
 import CommentsList from "../CommentsList/CommentsList";
 import { SingleBarterPropsType } from "../components.data.type";
 import "./SingleBarter.scss";
 
 const SingleBarter: React.FC<SingleBarterPropsType> = ({ barter }) => {
+	const { userData } = useAppSelector((state) => state.login);
+
 	return (
 		<div className="SingleBarter">
-			<div className="SingleBarter__body">{barter.barter}</div>
+			<div className="SingleBarter__body">
+				{barter.barter}
+				<div className="SingleBarter__body-author">
+					{barter.author.username}
+				</div>
+			</div>
 			<div className="SingleBarter__footer">
 				<div className="SingleBarter__teach">
 					<p>I can teach:</p>

@@ -3,8 +3,11 @@ import "./SingleComment.scss";
 import { SingleCommentPropsType } from "../components.data.type";
 import moment from "moment";
 import { userData } from "../../App";
+import { useAppSelector } from "../../redux/hooks";
 
 const SingleComment: FC<SingleCommentPropsType> = ({ comment }) => {
+	const { userData } = useAppSelector((state) => state.login);
+
 	return (
 		<div className="SingleComment">
 			<div className="SingleComment__title">

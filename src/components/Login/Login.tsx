@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { passwordValidRegex, usernameValidRegex } from "../../constants/regExp";
 import { HOME } from "../../constants/routs";
 import { useAuthActions, useAppSelector } from "../../redux/hooks";
-import { ErrorType, InputType, UserType } from "../components.data.type";
+import { ErrorType, UserType } from "../components.data.type";
 import "./Login.scss";
 
 export const Login: React.FC = () => {
@@ -21,6 +21,10 @@ export const Login: React.FC = () => {
 	const [invalidFormError, setInvalidFormError] = useState<ErrorType>(null);
 
 	console.log("LoginComponent>>>>>>");
+
+	useEffect(() => {
+		usernameInputRef.current?.focus();
+	}, []);
 
 	const inputValidation = (username: string, password: string): boolean => {
 		if (!username || !password) {

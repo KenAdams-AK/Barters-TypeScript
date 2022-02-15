@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as ROUTS from "../../constants/routs";
-import { useActions, useAppSelector } from "../../redux/hooks";
+import { useAuthActions, useAppSelector } from "../../redux/hooks";
 import "./Header.scss";
 
 export const Header: React.FC = () => {
-	const { logoutAction } = useActions();
+	const { logoutAction } = useAuthActions();
 
 	const username = useAppSelector((state) => state.login.userData.username);
 	const isLogged = useAppSelector((state) => state.login.isSuccess);
@@ -33,14 +33,15 @@ export const Header: React.FC = () => {
 							<li>
 								<Link to={ROUTS.REGISTRATION}>Registration</Link>
 							</li>
-							<li>
-								<Link to={ROUTS.LOGIN}>Login</Link>
-							</li>
-							<Link to={ROUTS.HOME}>
+							{isLogged ? (
 								<li role="button" onClick={handleLogout}>
-									Logout
+									<Link to={ROUTS.HOME}>Logout</Link>
 								</li>
-							</Link>
+							) : (
+								<li>
+									<Link to={ROUTS.LOGIN}>Login</Link>
+								</li>
+							)}
 						</ul>
 					</nav>
 				</div>

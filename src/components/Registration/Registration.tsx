@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useActions, useAppSelector } from "../../redux/hooks";
+import { useAuthActions, useAppSelector } from "../../redux/hooks";
 import { passwordValidRegex, usernameValidRegex } from "../../constants/regExp";
 import "./Registration.scss";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { LOGIN } from "../../constants/routs";
 import { ErrorType, InputType, UserType } from "../components.data.type";
 
 export const Registration: React.FC = () => {
-	const { registrationAsyncAction } = useActions();
+	const { registrationAsyncAction } = useAuthActions();
 	const { isLoading, isSuccess, errorMessage, userData } = useAppSelector(
 		(state) => state.registration
 	);

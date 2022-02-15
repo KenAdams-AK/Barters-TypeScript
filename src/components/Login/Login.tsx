@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { passwordValidRegex, usernameValidRegex } from "../../constants/regExp";
 import { HOME } from "../../constants/routs";
-import { useActions, useAppSelector } from "../../redux/hooks";
+import { useAuthActions, useAppSelector } from "../../redux/hooks";
 import { ErrorType, InputType, UserType } from "../components.data.type";
 import "./Login.scss";
 
 export const Login: React.FC = () => {
-	const { loginAsyncAction } = useActions();
+	const { loginAsyncAction } = useAuthActions();
 	const { isLoading, isSuccess, userData, errorMessage } = useAppSelector(
 		(state) => state.login
 	);

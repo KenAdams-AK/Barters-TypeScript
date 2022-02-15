@@ -1,6 +1,8 @@
+import { getBartersFailure } from './barters/bartersActions';
 import { UserType } from "../components/components.data.type";
 import { LoginTypes } from "./login/loginTypes";
 import { RegistrationTypes } from "./registration/registrationTypes";
+import { BartersTypes } from './barters/bartersTypes';
 
 export type UserDataType = {
 	id: string,
@@ -17,6 +19,11 @@ export type RegistrationStateType = {
 
 export type LoginStateType = RegistrationStateType;
 
+export type BartersStateType = {
+	isLoading: boolean,
+	barters: {},
+	getBartersError: string | null
+}
 
 interface IRegistrationRequestAction {
 		type: RegistrationTypes.REGISTRATION_REQUEST
@@ -56,3 +63,17 @@ interface ILogout {
 }
 
 export type LoginActionTypes = ILoginRequest | ILoginSuccess | ILoginFailure | ILogout;
+
+interface IGetBartersRequest {
+	type: BartersTypes.GET_BARTERS_REQUEST,
+}
+interface IGetBartersSuccess {
+	type: BartersTypes.GET_BARTERS_SUCCESS,
+	payload: any
+}
+interface IGetBartersFailure {
+	type: BartersTypes.GET_BARTERS_FAILURE,
+	payload: string
+}
+
+export type BartersActionsType = IGetBartersRequest | IGetBartersSuccess | IGetBartersFailure

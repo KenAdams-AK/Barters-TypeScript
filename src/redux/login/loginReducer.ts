@@ -17,8 +17,6 @@ export const loginReducer = (state = initialState, action: LoginActionTypes): Re
 				isLoading: true,
 		}
 		case LoginTypes.LOGIN_SUCCESS:
-			console.log('LOGIN_SUCCESS >>>>>>>>');
-			
 			return {
 				isLoading: false,
 				userData: action.payload,
@@ -33,8 +31,6 @@ export const loginReducer = (state = initialState, action: LoginActionTypes): Re
 		}
 		case LoginTypes.LOGOUT:
 			localStorage.clear()
-			console.log('LOGOUT >>>>>>');
-			
 			return {
 				...state,
 				isSuccess: false,

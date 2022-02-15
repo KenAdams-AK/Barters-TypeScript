@@ -1,14 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.scss";
 import { Header } from "./components/Header/Header";
-import { LOGIN, REGISTRATION } from "./constants/routs";
+import { HOME, LOGIN, REGISTRATION } from "./constants/routs";
 import { Login } from "./components/Login/Login";
 import { Registration } from "./components/Registration/Registration";
+import BartersList from "./components/BartersList/BartersList";
 import { UserType } from "./components/components.data.type";
-import { useActions } from "./redux/hooks";
+import { useAuthActions } from "./redux/hooks";
 
 function App() {
-	const { loginSuccessAction } = useActions();
+	const { loginSuccessAction } = useAuthActions();
 
 	const userData: UserType = JSON.parse(localStorage.getItem("userData")!);
 
@@ -22,6 +23,7 @@ function App() {
 			<Header />
 			<div className="App__container">
 				<Routes>
+					<Route path={HOME} element={<BartersList />} />
 					<Route path={LOGIN} element={<Login />} />
 					<Route path={REGISTRATION} element={<Registration />} />
 				</Routes>

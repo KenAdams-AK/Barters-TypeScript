@@ -29,4 +29,9 @@
 			font-weight: bold;
 		}
 	}
+
+	&__options {
+		display: flex;
+		gap: 5px;
+	}
 }

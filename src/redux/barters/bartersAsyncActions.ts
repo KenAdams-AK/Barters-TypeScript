@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
 import { Dispatch } from "redux"
+import { BarterType } from "../../components/components.data.type"
 import { BartersActionsType } from "../redux.data.type"
 import { getBartersFailure, getBartersRequest, getBartersSuccess } from "./bartersActions"
 
@@ -14,7 +15,7 @@ export const getBartersAsyncAction = () => {
 		}
 
 		axios(options)
-			.then((response: AxiosResponse) => dispatch(getBartersSuccess(response.data)))
-			.catch((error: AxiosError) => dispatch(getBartersFailure(error?.response?.data?.message)))
+			.then((response: AxiosResponse) => dispatch(getBartersSuccess(response.data.items)))
+			.catch((error: AxiosError<string>) => dispatch(getBartersFailure(error.message)))
 	}
 }

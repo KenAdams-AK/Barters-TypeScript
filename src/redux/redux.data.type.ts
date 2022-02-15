@@ -1,5 +1,4 @@
-import { getBartersFailure } from './barters/bartersActions';
-import { UserType } from "../components/components.data.type";
+import { BarterType, UserType } from "../components/components.data.type";
 import { LoginTypes } from "./login/loginTypes";
 import { RegistrationTypes } from "./registration/registrationTypes";
 import { BartersTypes } from './barters/bartersTypes';
@@ -21,7 +20,7 @@ export type LoginStateType = RegistrationStateType;
 
 export type BartersStateType = {
 	isLoading: boolean,
-	barters: {},
+	barters: BarterType[],
 	getBartersError: string | null
 }
 

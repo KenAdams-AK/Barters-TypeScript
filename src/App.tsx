@@ -8,10 +8,10 @@ import BartersList from "./components/BartersList/BartersList";
 import { UserType } from "./components/components.data.type";
 import { useAuthActions } from "./redux/hooks";
 
+export const userData: UserType = JSON.parse(localStorage.getItem("userData")!);
+
 function App() {
 	const { loginSuccessAction } = useAuthActions();
-
-	const userData: UserType = JSON.parse(localStorage.getItem("userData")!);
 
 	console.log("AppComponent>>>>>>");
 	console.log(userData);

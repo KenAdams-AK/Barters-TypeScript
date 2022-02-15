@@ -1,9 +1,10 @@
 import React from "react";
+import { userData } from "../../App";
 import CommentsList from "../CommentsList/CommentsList";
-import { SingleBarterPropType } from "../components.data.type";
+import { SingleBarterPropsType } from "../components.data.type";
 import "./SingleBarter.scss";
 
-const SingleBarter = ({ barter }: SingleBarterPropType) => {
+const SingleBarter: React.FC<SingleBarterPropsType> = ({ barter }) => {
 	return (
 		<div className="SingleBarter">
 			<div className="SingleBarter__body">{barter.barter}</div>
@@ -16,9 +17,14 @@ const SingleBarter = ({ barter }: SingleBarterPropType) => {
 					<p>I want learn:</p>
 					<p>{barter.learn}</p>
 				</div>
-				<div className="SingleBarter__optins">delete</div>
+				{barter.author.id === userData.id && (
+					<div className="SingleBarter__options">
+						<i className="far fa-edit"></i>
+						<i className="far fa-trash-alt"></i>
+					</div>
+				)}
 			</div>
-			<CommentsList />
+			<CommentsList comments={barter.comments} />
 		</div>
 	);
 };

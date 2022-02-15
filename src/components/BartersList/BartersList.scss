@@ -1,1 +1,8 @@
 @import "../../scss/commonPatterns.scss";
+
+.BartersList {
+	&__error {
+		@include error;
+		font-size: 1.1rem;
+	}
+}
